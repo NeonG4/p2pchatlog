@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace p2pchatlog
 {
     class PeerClient
+
     {
+        public int messagesReceived;
         private TcpClient client;
         private NetworkStream stream;
 
@@ -37,6 +39,7 @@ namespace p2pchatlog
 
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     Console.WriteLine("Message Received: " + message);
+                    messagesReceived++;
                 }
                 catch (Exception ex)
                 {
