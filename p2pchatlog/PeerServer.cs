@@ -12,6 +12,7 @@ namespace p2pchatlog
     {
         private TcpListener listener;
         private bool isRunning;
+        int clientsConnected = 0;
 
         public PeerServer(int port)
         {
@@ -37,6 +38,7 @@ namespace p2pchatlog
                 {
                     var client = listener.AcceptTcpClient();
                     Console.WriteLine("Client Connected");
+                    clientsConnected++;
                     HandleClient(client);
                 }
                 catch (Exception ex)

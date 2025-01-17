@@ -11,13 +11,14 @@ class Program
 {
     static void Main(string[] args)
     {
+        int port = 64005;
         Console.WriteLine("Are you the client (c) or server (s)? ");
         string serverOrClient = Console.ReadLine();
         if (serverOrClient == "c")
         {
             Console.WriteLine("Starting client...");
-            Console.WriteLine("What is your IPv4 address? (open CMD, type \"ipconfig\" to find out.)");
-            PeerClient client = new PeerClient(Console.ReadLine(), 5001);
+            Console.WriteLine("What is the server's local IPv4 address? (open CMD, type \"ipconfig\" to find out.)");
+            PeerClient client = new PeerClient(Console.ReadLine(), port);
             client.StartListening();
 
             Console.WriteLine("Enter message to send (or type \"exit\" to quit");
@@ -31,7 +32,7 @@ class Program
         else if (serverOrClient == "s")
         {
             Console.WriteLine("Starting server...");
-            PeerServer server = new PeerServer(5001);
+            PeerServer server = new PeerServer(port);
             server.Start();
 
             Console.WriteLine("Press any key to stop the server...");
