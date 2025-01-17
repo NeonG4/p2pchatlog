@@ -12,7 +12,7 @@ class Program
     static void Main(string[] args)
     {
         int port = 64005;
-        Console.WriteLine("Are you the client (c) or server (s)? ");
+        Console.WriteLine("Press c!");
         string serverOrClient = Console.ReadLine();
         if (serverOrClient == "c")
         {
