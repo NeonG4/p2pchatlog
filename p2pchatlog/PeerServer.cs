@@ -10,7 +10,7 @@ namespace p2pchatlog
 {
     class PeerServer
     {
-        public List<string> messages;
+        public List<string> messages = new List<string>();
         private TcpListener listener;
         private bool isRunning;
         int clientsConnected = 0;
@@ -59,7 +59,7 @@ namespace p2pchatlog
                 {
                     int bytesRead = stream.Read(buffer, 0, buffer.Length);
                     Console.WriteLine(bytesRead);
-                    if (bytesRead != 0)
+                    if (bytesRead != 0) // if a message was read
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         messages.Add(message);
@@ -69,7 +69,7 @@ namespace p2pchatlog
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error while reading from stream " + ex.Message);
+                Console.WriteLine("Error while reading from stream\n" + ex.Message);
             }
             finally
             {

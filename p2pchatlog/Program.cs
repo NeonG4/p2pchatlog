@@ -41,7 +41,7 @@ class Program
         {
             if (message == null)
             {
-                
+
             }
             else if (message == "/help")
             {
