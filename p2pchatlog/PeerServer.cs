@@ -58,7 +58,6 @@ namespace p2pchatlog
                 while (true)
                 {
                     int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                    Console.WriteLine(bytesRead);
                     if (bytesRead != 0) // if a message was read
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);

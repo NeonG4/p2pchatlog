@@ -31,10 +31,6 @@ class Program
         client.StartListening();
         client.SendMessage(username); // sends the username
         Console.WriteLine("Establishing connection...");
-        while (server.messages.Count == 0)
-        {
-            // wait, probably should use an interrupt 
-        }
         connectUsername = server.messages[0];
         string message;
         while ((message = Console.ReadLine()) != "/exit")
