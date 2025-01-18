@@ -10,6 +10,7 @@ namespace p2pchatlog
 {
     class PeerServer
     {
+        public List<string> messages;
         private TcpListener listener;
         private bool isRunning;
         int clientsConnected = 0;
@@ -61,6 +62,7 @@ namespace p2pchatlog
                     if (bytesRead != 0)
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                        messages.Add(message);
                         Console.WriteLine("Message Received from client: " + message);
                     }
                 }

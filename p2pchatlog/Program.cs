@@ -9,9 +9,9 @@ using System.Xml;
 // server program
 class Program
 {
-    public string connectUsername;
     static void Main(string[] args)
     {
+        string connectUsername;
         int port = 64005;
         // server
         Console.WriteLine("What is your username?");
@@ -26,19 +26,36 @@ class Program
         // client
         Console.WriteLine("Starting Client");
 
-        Console.WriteLine("What is the server's local IPv4 address? (open CMD, type \"ipconfig\" to find out.)");
+        Console.WriteLine("What is your friend's local IPv4 address? (Open CMD, type 'ipconfig' and look for IPv4) (you must be on the same network to connect)");
         PeerClient client = new PeerClient(Console.ReadLine(), port);
         client.StartListening();
-        client.SendMessage(username);
-        // should read data from client
-        //while ((client.messagesReceived == 0))
-        //{
-
-        //}
-        string message;
-        while ((message = Console.ReadLine()) != "exit")
+        client.SendMessage(username); // sends the username
+        Console.WriteLine("Establishing connection...");
+        while (server.messages.Count == 0)
         {
-            client.SendMessage(message);
+            // wait, probably should use an interrupt 
+        }
+        connectUsername = server.messages[0];
+        string message;
+        while ((message = Console.ReadLine()) != "/exit")
+        {
+            if (message == null)
+            {
+            }
+            else if (message == "/help")
+            {
+                Console.WriteLine("Type '/help' to get a list of commands");
+                Console.WriteLine("Type '/clear' to clear the console");
+                Console.WriteLine("Type '/exit' to close the connection");
+            }
+            else if (message == "/clear")
+            {
+                Console.Clear();
+            }
+            else 
+            {
+                client.SendMessage(message);
+            }
         }
         client.Close();
     }
