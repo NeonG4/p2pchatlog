@@ -31,11 +31,15 @@ class Program
         client.StartListening();
         client.SendMessage(username); // sends the username
         Console.WriteLine("Establishing connection...");
-        while (client.messagesReceived == 0) { }
+        // while (client.messagesReceived == 0) { }
         connectUsername = server.messages[0];
         string message;
         while ((message = Console.ReadLine()) != "/exit")
         {
+            if (client.messagesReceived == 1)
+            {
+                Console.WriteLine("Recieved first message!");
+            }
             if (message == null)
             {
 
