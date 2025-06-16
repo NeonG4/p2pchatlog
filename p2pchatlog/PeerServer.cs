@@ -40,7 +40,6 @@ namespace p2pchatlog
                 {
                     var client = listener.AcceptTcpClient();
                     Console.WriteLine("Client Connected");
-                    clientsConnected++;
                     HandleClient(client);
                 }
                 catch (Exception ex)
