@@ -13,6 +13,7 @@ namespace p2pchatlog
         public List<string> messages = new List<string>();
         private TcpListener listener;
         private bool isRunning;
+        public string user = string.Empty;
         int clientsConnected = 0;
 
         public PeerServer(int port)
@@ -62,7 +63,7 @@ namespace p2pchatlog
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         messages.Add(message);
-                        Console.WriteLine("Message Received from client: " + message);
+                        Console.WriteLine($"{user}: {message}");
                     }
                 }
             }

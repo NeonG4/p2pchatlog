@@ -12,7 +12,7 @@ namespace p2pchatlog
         public int messagesReceived;
         private TcpClient client;
         private NetworkStream stream;
-        List<string> messages = new List<string>();
+        public List<string> messages = new List<string>();
 
         public PeerClient(string serverIp, int serverPort)
         {
@@ -38,7 +38,7 @@ namespace p2pchatlog
                     if (bytesRead == 0) break;
 
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    Console.WriteLine("Message Received: " + message);
+                    // Console.WriteLine("Message Received: " + message);
                     messages.Add(message);
                     messagesReceived++;
                 }
