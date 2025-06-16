@@ -12,7 +12,7 @@ class Program
     static void Main(string[] args)
     {
         string connectUsername;
-        int port = 64005;
+        int port = 65004;
         // server
         Console.WriteLine("What is your username?");
         string username = Console.ReadLine();
@@ -31,6 +31,7 @@ class Program
         client.StartListening();
         client.SendMessage(username); // sends the username
         Console.WriteLine("Establishing connection...");
+        while (server.messages.Count == 0) { }
         connectUsername = server.messages[0];
         string message;
         while ((message = Console.ReadLine()) != "/exit")
