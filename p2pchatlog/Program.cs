@@ -31,7 +31,7 @@ class Program
         client.StartListening();
         client.SendMessage(username); // sends the username
         Console.WriteLine("Establishing connection...");
-        while (server.messages.Count == 0) { }
+        while (client.messagesReceived == 0) { }
         connectUsername = server.messages[0];
         string message;
         while ((message = Console.ReadLine()) != "/exit")

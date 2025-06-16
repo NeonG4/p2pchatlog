@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace p2pchatlog
 {
     class PeerClient
-
     {
         public int messagesReceived;
         private TcpClient client;
         private NetworkStream stream;
+        List<string> messages = new List<string>();
 
         public PeerClient(string serverIp, int serverPort)
         {
@@ -39,6 +39,7 @@ namespace p2pchatlog
 
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     Console.WriteLine("Message Received: " + message);
+                    messages.Add(message);
                     messagesReceived++;
                 }
                 catch (Exception ex)
