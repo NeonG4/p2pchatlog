@@ -30,9 +30,10 @@ class Program
         PeerClient client = new PeerClient(Console.ReadLine(), port);
         client.StartListening();
         client.SendMessage(username); // sends the username
+        Console.Clear();
         Console.WriteLine("Establishing connection...");
-        while (client.messages.Count == 0) { }
-        connectUsername = client.messages[0];
+        while (server.messages.Count == 0) { }
+        connectUsername = server.messages[0];
         client.user = connectUsername;
         Console.Clear();
         string message;
