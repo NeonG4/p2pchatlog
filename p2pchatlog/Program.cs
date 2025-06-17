@@ -27,7 +27,13 @@ class Program
         string connectUsername;
         int port = 65004;
         // server
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("What port number would you like to use? (enter a port between 65000 - 65100)");
+        Console.ForegroundColor = ConsoleColor.Magenta;
+        port = int.Parse(Console.ReadLine());
+        Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine("What is your username?");
+        Console.ForegroundColor = ConsoleColor.Magenta;
         string? username = Console.ReadLine();
         if (username == null)
         {
@@ -37,7 +43,9 @@ class Program
         server.Start();
         // client
 
+        Console.ForegroundColor = ConsoleColor.White;
         Console.WriteLine($"What is your friend's local IPv4 address? (Yours is {myIp})");
+        Console.ForegroundColor = ConsoleColor.Magenta;
         PeerClient client = new PeerClient(Console.ReadLine(), port);
         client.StartListening();
         client.SendMessage(username); // sends the username
