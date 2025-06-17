@@ -61,7 +61,11 @@ namespace p2pchatlog
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                         messages.Add(message);
-                        Console.WriteLine($"{user}: {message}\n");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write(user + ": ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(message);
+                        Console.ForegroundColor = ConsoleColor.Blue;
                     }
                 }
             }

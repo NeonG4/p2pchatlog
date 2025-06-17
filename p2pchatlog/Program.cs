@@ -28,7 +28,7 @@ class Program
         int port = 65004;
         // server
         Console.WriteLine("What is your username?");
-        string username = Console.ReadLine();
+        string? username = Console.ReadLine();
         if (username == null)
         {
             return;
@@ -42,12 +42,13 @@ class Program
         client.StartListening();
         client.SendMessage(username); // sends the username
         Console.Clear();
-        while (server.messages.Count == 0) { }
+        while (server.messages.Count == 0) { } // waits for the username to be recieved, probably should use an interupt
         connectUsername = server.messages[0];
         server.user = connectUsername;
+        string? message;
         Console.Clear();
-        Console.WriteLine($"Talking with {connectUsername}\n\n");
-        string message;
+        Console.WriteLine($"Talking with {connectUsername}");
+        Console.ForegroundColor = ConsoleColor.Blue;
         while ((message = Console.ReadLine()) != "/exit")
         {
             if (message == null)
@@ -56,14 +57,18 @@ class Program
             }
             else if (message == "/help")
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("Type '/help' to get a list of commands");
                 Console.WriteLine("Type '/clear' to clear the console");
                 Console.WriteLine("Type '/exit' to close the connection");
+                Console.ForegroundColor = ConsoleColor.Blue;
             }
             else if (message == "/clear")
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Clear();
-                Console.WriteLine($"Talking with {connectUsername}\n\n");
+                Console.WriteLine($"Talking with {connectUsername}");
+                Console.ForegroundColor = ConsoleColor.Blue;
             }
             else 
             {
@@ -71,6 +76,7 @@ class Program
             }
         }
         client.Close();
+        server.Stop();
     }
 }
 
