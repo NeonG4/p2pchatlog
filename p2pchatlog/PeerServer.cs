@@ -46,6 +46,7 @@ namespace p2pchatlog
                 {
                     try
                     {
+                        // server
                         var client = listener.AcceptTcpClient();
                         Console.WriteLine("Client Connected");
                         HandleClient(client);
@@ -62,6 +63,7 @@ namespace p2pchatlog
                 {
                     try
                     {
+                        // client
                         var client = listener.AcceptTcpClient();
                         Console.WriteLine("Client Connected");
                         HandleClient(client);

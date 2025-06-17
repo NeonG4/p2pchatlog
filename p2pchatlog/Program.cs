@@ -15,6 +15,7 @@ class Program
         Console.WriteLine("Client or server? (c or s)");
         char c = Console.ReadKey().KeyChar;
         int greetingPort = 65000;
+        int clientPort = 65000;
         if (c == 's')
         {
             List<int> usingPorts = new List<int>();
