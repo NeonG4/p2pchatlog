@@ -34,7 +34,7 @@ class Program
         Console.WriteLine("Establishing connection...");
         while (server.messages.Count == 0) { }
         connectUsername = server.messages[0];
-        client.user = connectUsername;
+        server.user = connectUsername;
         Console.Clear();
         Console.WriteLine(connectUsername);
         string message;

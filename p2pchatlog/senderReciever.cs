@@ -55,7 +55,7 @@ namespace p2pchatlog
         {
             byte[] buffer = Encoding.UTF8.GetBytes(message);
             stream.Write(buffer, 0, buffer.Length);
-            Console.WriteLine(message);
+            // Console.WriteLine(message);
         }
 
         public void Close()
