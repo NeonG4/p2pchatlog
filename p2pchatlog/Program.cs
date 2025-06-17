@@ -36,6 +36,7 @@ class Program
         connectUsername = server.messages[0];
         client.user = connectUsername;
         Console.Clear();
+        Console.WriteLine(connectUsername);
         string message;
         while ((message = Console.ReadLine()) != "/exit")
         {
@@ -52,6 +53,7 @@ class Program
             else if (message == "/clear")
             {
                 Console.Clear();
+                Console.WriteLine($"Talking with {connectUsername}\n\n");
             }
             else 
             {
