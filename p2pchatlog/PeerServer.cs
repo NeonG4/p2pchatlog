@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace p2pchatlog
 {
+    enum ServerType
+    {
+        Greeting,
+        Client
+    }
     class PeerServer
     {
         public List<string> messages = new List<string>();
@@ -15,11 +20,13 @@ namespace p2pchatlog
         private bool isRunning;
         public string user = string.Empty;
         int clientsConnected = 0;
+        ServerType serverType;
 
-        public PeerServer(int port)
+        public PeerServer(int port, ServerType server)
         {
             listener = new TcpListener(IPAddress.Any, port);
             isRunning = false;
+            serverType = server;
         }
 
         public void Start()
@@ -33,17 +40,36 @@ namespace p2pchatlog
 
         private void ListenForConnections()
         {
-            while (isRunning)
+            if (serverType == ServerType.Greeting)
             {
-                try
+                while (isRunning)
                 {
-                    var client = listener.AcceptTcpClient();
-                    Console.WriteLine("Client Connected");
-                    HandleClient(client);
+                    try
+                    {
+                        var client = listener.AcceptTcpClient();
+                        Console.WriteLine("Client Connected");
+                        HandleClient(client);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error accepting connection " + ex.Message);
+                    }
                 }
-                catch (Exception ex)
+            }
+            else
+            {
+                while (isRunning)
                 {
-                    Console.WriteLine("Error accepting connection " + ex.Message);
+                    try
+                    {
+                        var client = listener.AcceptTcpClient();
+                        Console.WriteLine("Client Connected");
+                        HandleClient(client);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Error accepting connection " + ex.Message);
+                    }
                 }
             }
         }
