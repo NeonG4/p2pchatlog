@@ -39,8 +39,7 @@ namespace p2pchatlog
                     if (bytesRead == 0) break;
 
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    Console.WriteLine(user + ": " + message);
-                    Console.WriteLine("Client");
+                    Console.WriteLine(user + ": " + message + "\n");
                     messages.Add(message);
                     messagesReceived++;
                 }

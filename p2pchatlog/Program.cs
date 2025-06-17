@@ -42,12 +42,11 @@ class Program
         client.StartListening();
         client.SendMessage(username); // sends the username
         Console.Clear();
-        Console.WriteLine("Establishing connection...");
         while (server.messages.Count == 0) { }
         connectUsername = server.messages[0];
         server.user = connectUsername;
         Console.Clear();
-        Console.WriteLine(connectUsername);
+        Console.WriteLine($"Talking with {connectUsername}\n\n");
         string message;
         while ((message = Console.ReadLine()) != "/exit")
         {
