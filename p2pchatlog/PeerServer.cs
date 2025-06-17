@@ -26,7 +26,6 @@ namespace p2pchatlog
         {
             listener.Start();
             isRunning = true;
-            Console.WriteLine("Server is listening for incoming connections...");
 
             Thread listenerThread = new Thread(ListenForConnections);
             listenerThread.Start();

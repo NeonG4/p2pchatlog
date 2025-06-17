@@ -11,6 +11,19 @@ class Program
 {
     static void Main(string[] args)
     {
+        string? myIp = null;
+        var host = Dns.GetHostEntry(Dns.GetHostName());
+        foreach (var ip in host.AddressList)
+        {
+            if (ip.AddressFamily == AddressFamily.InterNetwork)
+            {
+                myIp = ip.ToString();
+            }
+        }
+        if (myIp == null)
+        {
+            throw new Exception("Null IP");
+        }
         string connectUsername;
         int port = 65004;
         // server
@@ -20,13 +33,11 @@ class Program
         {
             return;
         }
-        Console.WriteLine("Starting Server...");
         PeerServer server = new PeerServer(port);
         server.Start();
         // client
-        Console.WriteLine("Starting Client");
 
-        Console.WriteLine("What is your friend's local IPv4 address? (Open CMD, type 'ipconfig' and look for IPv4) (you must be on the same network to connect)");
+        Console.WriteLine($"What is your friend's local IPv4 address? (Yours is {myIp})");
         PeerClient client = new PeerClient(Console.ReadLine(), port);
         client.StartListening();
         client.SendMessage(username); // sends the username
